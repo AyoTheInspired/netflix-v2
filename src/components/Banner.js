@@ -2,6 +2,10 @@ import React from "react";
 import styled from "styled-components";
 
 function Banner() {
+	const truncate = (string, n) => {
+		return string?.length > n ? string.substring(0, n - 1) + "..." : string;
+	};
+
 	return (
 		<Header
 			style={{
@@ -15,7 +19,9 @@ function Banner() {
 					<button className="banner__button">Play</button>
 					<button className="banner__button">My List</button>
 				</div>
-				<h1 className="banner__description">this is a test description</h1>
+				<h1 className="banner__description">
+					{truncate(`this is a test description lorem500`, 150)}
+				</h1>
 			</div>
 
 			<div className="banner--fadeButtom" />
