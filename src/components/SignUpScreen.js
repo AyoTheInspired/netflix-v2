@@ -1,18 +1,54 @@
-import React from "react";
+import React, { useRef } from "react";
 import styled from "styled-components";
+import { auth } from "../firebase";
 
 function SignUpScreen() {
+	const emailRef = useRef(null);
+	const passwordRef = useRef(null);
+
+	const register = (e) => {
+		e.preventDefault();
+
+		auth
+			.createUserWithEmailAndPassword(
+				emailRef.current.value,
+				passwordRef.current.value
+			)
+			.then((authUser) => {
+				console.log(authUser);
+			})
+			.catch((error) => alert(error.message));
+	};
+
+	const signIn = (e) => {
+		e.preventDefault();
+
+		auth
+			.signInWithEmailAndPassword(
+				emailRef.current.value,
+				passwordRef.current.value
+			)
+			.then((authUser) => {
+				console.log(authUser);
+			})
+			.catch((error) => alert(error.message));
+	};
+
 	return (
 		<Div>
 			<form>
 				<h2>Sign In</h2>
-				<input type="email" placeholder="Email" />
-				<input type="password" placeholder="Password" />
-				<button type="submit">Sign In</button>
+				<input type="email" ref={emailRef} placeholder="Email" />
+				<input type="password" ref={passwordRef} placeholder="Password" />
+				<button type="submit" onClick={signIn}>
+					Sign In
+				</button>
 				<h4>
 					<span className="gray__text">New to Netflix? &nbsp;</span>
 
-					<span className="link__text">Sign up Now.</span>
+					<span className="link__text" onClick={register}>
+						Sign up Now.
+					</span>
 				</h4>
 			</form>
 		</Div>
