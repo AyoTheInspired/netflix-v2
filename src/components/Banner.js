@@ -1,7 +1,24 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
+import axios from "../axios";
+import requests from "../requests";
 
 function Banner() {
+	const [movie, setMovie] = useState([]);
+
+	useEffect(() => {
+		async function fetchData() {
+			const request = await axios.get(requests.fetchNetflixOriginals);
+			setMovie(
+				request.data.results[0]
+				// Math.floor(Math.random() * request.data.results.length - 1)
+			);
+			return request;
+		}
+
+		fetchData();
+	}, []);
+
 	const truncate = (string, n) => {
 		return string?.length > n ? string.substring(0, n - 1) + "..." : string;
 	};
@@ -9,18 +26,20 @@ function Banner() {
 	return (
 		<Header
 			style={{
-				backgroundImage: `url(https://res.cloudinary.com/ayotheinspired/image/upload/v1625677777/random-images/mealson__hero-bg_dcljeu.jpg)`,
+				backgroundImage: `url("https://image.tmdb.org/t/p/original/${movie?.backdrop_path}")`,
 				backgroundSize: "cover",
 				backgroundPosition: "center center",
 			}}>
 			<div className="banner__contents">
-				<h1 className="banner__title">movie name</h1>
+				<h1 className="banner__title">
+					{movie?.title || movie?.name || movie?.original_name}{" "}
+				</h1>
 				<div className="banner__buttons">
 					<button className="banner__button">Play</button>
 					<button className="banner__button">My List</button>
 				</div>
 				<h1 className="banner__description">
-					{truncate(`this is a test description lorem500`, 150)}
+					{truncate(movie?.overview, 150)}
 				</h1>
 			</div>
 
