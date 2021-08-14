@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useHistory } from "react-router-dom";
 import styled from "styled-components";
 
 function Nav() {
@@ -12,6 +13,8 @@ function Nav() {
 		}
 	};
 
+	const history = useHistory();
+
 	useEffect(() => {
 		window.addEventListener("scroll", transitionNavbar);
 
@@ -22,11 +25,17 @@ function Nav() {
 		<Div className={show && "nav__black"}>
 			<div className="nav__contents">
 				<img
+					onClick={() => history.push("/")}
 					className="nav__logo"
 					src="https://res.cloudinary.com/ayotheinspired/image/upload/v1620819859/random-images/Logonetflix_bqzef0.png"
 					alt=""
 				/>
-				<img className="nav__avatar" src="/smiley.png" alt="" />
+				<img
+					className="nav__avatar"
+					src="/smiley.png"
+					alt="smiley"
+					onClick={() => history.push("/profile")}
+				/>
 			</div>
 		</Div>
 	);
