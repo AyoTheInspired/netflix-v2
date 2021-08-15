@@ -4,39 +4,41 @@ import SignUpScreen from "./SignUpScreen";
 
 function LoginTop() {
 	const [signIn, setSignIn] = useState(false);
-	const [coverNav, setCoverNav] = useState(false);
+	// const [coverNav, setCoverNav] = useState(false);
 
-	const cover = () => {
-		if (window.scrollY >= 100) {
-			setCoverNav(true);
-		} else {
-			setCoverNav(false);
-		}
-	};
+	// const cover = () => {
+	// 	if (window.scrollY >= 100) {
+	// 		setCoverNav(true);
+	// 	} else {
+	// 		setCoverNav(false);
+	// 	}
+	// };
 
-	useEffect(() => {
-		window.addEventListener("scroll", cover);
+	// useEffect(() => {
+	// 	window.addEventListener("scroll", cover);
 
-		return () => window.removeEventListener("scroll", cover);
-	}, []);
+	// 	return () => window.removeEventListener("scroll", cover);
+	// }, []);
 
 	return (
 		<Div>
-			<div className={`${coverNav && "nav__covered"}loginScreen__background`}>
-				<img
-					src="https://res.cloudinary.com/ayotheinspired/image/upload/v1620819859/random-images/Logonetflix_bqzef0.png"
-					alt="netflix"
-					className="loginScreen__logo"
-				/>
+			<nav>
+				<div className="loginScreen__background">
+					<img
+						src="https://res.cloudinary.com/ayotheinspired/image/upload/v1620819859/random-images/Logonetflix_bqzef0.png"
+						alt="netflix"
+						className={`loginScreen__logo`}
+					/>
 
-				<button
-					className="loginScreen__button"
-					onClick={() => setSignIn(!signIn)}>
-					Sign In
-				</button>
+					<button
+						className="loginScreen__button"
+						onClick={() => setSignIn(!signIn)}>
+						Sign In
+					</button>
 
-				<div className="loginScreen__gradient" />
-			</div>
+					<div className="loginScreen__gradient" />
+				</div>
+			</nav>
 
 			<div className="loginScreen__body">
 				{signIn ? (
@@ -87,11 +89,6 @@ const Div = styled.div`
 			rgba(0, 0, 0, 0) 60%,
 			rgba(0, 0, 0, 0.8) 100%
 		);
-	}
-
-	.loginScreen__background {
-		background: green !important;
-		padding: 50px !important;
 	}
 
 	.loginScreen__logo {

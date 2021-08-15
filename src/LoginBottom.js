@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { Container, Row, Accordion } from "react-bootstrap";
 
 function LoginBottom() {
 	return <Div>the login bottom</Div>;
@@ -7,4 +8,4 @@ function LoginBottom() {
 
 export default LoginBottom;
 
-const Div = styled.div``;
+const Div = styled(Container)``;
