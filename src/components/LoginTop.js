@@ -148,4 +148,10 @@ const Div = styled.div`
 			}
 		}
 	}
+
+	@media (max-width: 768px) {
+		.loginScreen__body {
+			top: 15%;
+		}
+	}
 `;
