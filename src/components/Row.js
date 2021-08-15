@@ -11,6 +11,7 @@ function Row({ title, fetchUrl, isLargeRow = false }) {
 		async function fetchData() {
 			const request = await axios.get(fetchUrl);
 			setMovies(request.data.results);
+			console.log(request.data.results);
 			return request;
 		}
 
@@ -25,14 +26,19 @@ function Row({ title, fetchUrl, isLargeRow = false }) {
 					(movie, id) =>
 						((isLargeRow && movie.poster_path) ||
 							(!isLargeRow && movie.backdrop_path)) && (
-							<img
-								className={`row__poster ${isLargeRow && "row__posterLarge"}`}
-								src={`${base_url}${
-									isLargeRow ? movie.poster_path : movie.backdrop_path
-								}`}
-								alt={movie.id}
-								key={id + 1}
-							/>
+							<div className="movie__wrap">
+								<img
+									className={`row__poster ${isLargeRow && "row__posterLarge"}`}
+									src={`${base_url}${
+										isLargeRow ? movie.poster_path : movie.backdrop_path
+									}`}
+									alt={movie.id}
+									key={id + 1}
+								/>
+								{/* <div className="movie__details">
+									<h5> {movie.original_name} </h5>
+								</div> */}
+							</div>
 						)
 				)}
 			</div>
@@ -78,6 +84,13 @@ const Div = styled.div`
 		&:hover {
 			transform: scale(1.09);
 			box-shadow: 0px -2px 5px rgba(255, 255, 255, 0.9);
+		}
+	}
+
+	.movie__wrap {
+		h5 {
+			font-size: 10px;
+			margin-top: -20px;
 		}
 	}
 `;
