@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import SignUpScreen from "./SignUpScreen";
 import LoginTop from "./LoginTop";
+import LoginMid from "./LoginMid";
 
 function LoginScreen() {
 	return (
 		<Div>
 			<LoginTop />
+			<LoginMid />
 		</Div>
 	);
 }
