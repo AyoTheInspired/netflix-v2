@@ -57,6 +57,7 @@ const Div = styled.div`
 	height: 100%;
 	background: url("https://i.redd.it/128uj78z58m01.jpg") center/cover no-repeat
 		fixed;
+	z-index: 4;
 
 	.loginScreen__gradient {
 		width: 100%;
